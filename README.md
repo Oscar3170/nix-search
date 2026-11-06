@@ -100,9 +100,9 @@ Set `NIX_SEARCH_SCHEMA_VERSION` to skip straight to a specific mapping version
 ## Development
 
 ```console
-$ nix develop          # or use your own go 1.26 toolchain
-$ go test -short ./... # unit tests, no network
-$ go test ./...       # unit tests + live integration tests against search.nixos.org
+$ nix develop                          # or use your own go 1.26 toolchain
+$ go test ./...                        # unit tests, no network
+$ NIX_SEARCH_INTEGRATION=1 go test ./integration  # live backend, opt-in
 ```
 
 The unit tests pin the Elasticsearch request bodies and the rendered output
@@ -111,5 +111,8 @@ Python implementation of this tool; `testdata/README.md` records the details.
 
 `integration/` builds the CLI and runs it against the real backend, covering
 each documentation set, JSON output, alias re-resolution and the unknown-channel
-error. Those tests skip under `-short`, which is what the Nix build uses because
-its sandbox has no network.
+error. Because that is a shared public service, the suite only runs with
+`NIX_SEARCH_INTEGRATION=1`, spaces its requests one second apart, and skips
+under `-short` (which is what the Nix build uses, since its sandbox has no
+network).
+

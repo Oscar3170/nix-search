@@ -1,9 +1,10 @@
 // Package integration exercises the built binary against the real
 // search.nixos.org backend.
 //
-// The tests need network access, so they are skipped under `go test -short`.
-// The Nix build runs its checks with -short (see flake.nix), which keeps the
-// sandbox offline.
+// It hits a shared public service, so it is opt-in: the tests are skipped
+// unless NIX_SEARCH_INTEGRATION=1 is set, and -short skips them as well (the
+// Nix build uses -short because its sandbox has no network). Requests are
+// spaced out by minInterval to stay polite.
 package integration
 
 import (
@@ -15,16 +16,32 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
+	"time"
 )
+
+// enableEnv must be set to run these tests, which query the public
+// search.nixos.org backend.
+const enableEnv = "NIX_SEARCH_INTEGRATION"
+
+// minInterval spaces consecutive requests to the shared backend.
+const minInterval = time.Second
 
 // binPath is the compiled CLI, built once by TestMain.
 var binPath string
 
+// lastRun is when the CLI was last invoked; the tests run sequentially.
+var lastRun time.Time
+
+// enabled reports whether these tests may query the live backend.
+func enabled() bool {
+	return !testing.Short() && os.Getenv(enableEnv) == "1"
+}
+
 func TestMain(m *testing.M) {
-	// -short decides whether the binary is worth building, and testing.Short
-	// requires the flags to be parsed first.
+	// Deciding whether to build needs the flags parsed, and testing.Short
+	// requires that too.
 	flag.Parse()
-	if testing.Short() {
+	if !enabled() {
 		os.Exit(m.Run())
 	}
 
@@ -58,12 +75,17 @@ type result struct {
 // run executes the CLI with extra environment variables.
 func run(t *testing.T, env []string, args ...string) result {
 	t.Helper()
-	if testing.Short() {
-		t.Skip("integration test needs network access; run without -short")
+	if !enabled() {
+		t.Skipf("set %s=1 to run the integration tests against the live backend", enableEnv)
 	}
 	if binPath == "" {
 		t.Fatal("nix-search was not built")
 	}
+
+	if wait := minInterval - time.Since(lastRun); wait > 0 {
+		time.Sleep(wait)
+	}
+	lastRun = time.Now()
 
 	cmd := exec.Command(binPath, args...)
 	cmd.Env = append(os.Environ(), env...)
