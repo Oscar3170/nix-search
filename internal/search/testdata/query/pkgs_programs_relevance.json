@@ -1,0 +1,61 @@
+{
+  "from": 0,
+  "size": 50,
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "term": {
+            "type": "package"
+          }
+        }
+      ],
+      "should": [
+        {
+          "multi_match": {
+            "query": "gcc",
+            "type": "best_fields",
+            "fuzziness": "1",
+            "prefix_length": 1,
+            "operator": "and",
+            "fields": [
+              "package_programs^4",
+              "package_mainProgram^4",
+              "package_programs.*^2",
+              "package_mainProgram.*^2"
+            ]
+          }
+        },
+        {
+          "wildcard": {
+            "package_programs": {
+              "value": "*gcc*",
+              "case_insensitive": true
+            }
+          }
+        }
+      ],
+      "minimum_should_match": 1
+    }
+  },
+  "sort": [
+    {
+      "_score": "desc"
+    }
+  ],
+  "rescore": {
+    "window_size": 100,
+    "query": {
+      "rescore_query": {
+        "function_score": {
+          "script_score": {
+            "script": {
+              "source": "1.0 / doc['package_attr_name'].value.length()"
+            }
+          }
+        }
+      },
+      "rescore_query_weight": 20
+    }
+  }
+}

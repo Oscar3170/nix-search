@@ -1,0 +1,160 @@
+{
+  "from": 0,
+  "size": 25,
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "term": {
+            "type": {
+              "value": "darwin-option",
+              "_name": "filter_darwin_options"
+            }
+          }
+        }
+      ],
+      "must": [
+        {
+          "dis_max": {
+            "boost": 8.33,
+            "tie_breaker": 0.509,
+            "queries": [
+              {
+                "prefix": {
+                  "option_name.attr_path_reverse": {
+                    "value": "-dock-autohide",
+                    "boost": 26.4
+                  }
+                }
+              },
+              {
+                "wildcard": {
+                  "option_name.edge": {
+                    "value": "*dock*"
+                  }
+                }
+              },
+              {
+                "wildcard": {
+                  "option_name.edge": {
+                    "value": "*autohide*"
+                  }
+                }
+              },
+              {
+                "multi_match": {
+                  "type": "best_fields",
+                  "query": "dock autohide",
+                  "fields": [
+                    "option_description^1"
+                  ],
+                  "boost": 0.0001,
+                  "fuzziness": "1",
+                  "prefix_length": 1
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "should": [
+        {
+          "wildcard": {
+            "option_name.attr_path": {
+              "value": "*dock.autohide*",
+              "boost": 0.546
+            }
+          }
+        },
+        {
+          "wildcard": {
+            "option_name.attr_path_reverse": {
+              "value": "*dock.autohide.package*",
+              "boost": 0.111
+            }
+          }
+        },
+        {
+          "constant_score": {
+            "boost": 0.128,
+            "filter": {
+              "multi_match": {
+                "type": "phrase_prefix",
+                "query": "enable",
+                "fields": [
+                  "option_name.edge^11.6",
+                  "option_name.attr_path_reverse^682"
+                ],
+                "boost": 5.45,
+                "operator": "or"
+              }
+            }
+          }
+        },
+        {
+          "prefix": {
+            "option_name.attr_path_reverse": {
+              "value": "autohide",
+              "boost": 206,
+              "case_insensitive": true
+            }
+          }
+        },
+        {
+          "constant_score": {
+            "boost": 0.0682,
+            "filter": {
+              "multi_match": {
+                "type": "phrase",
+                "query": "dock",
+                "fields": [
+                  "option_description^11.6",
+                  "option_description.*^0.65",
+                  "option_name^630"
+                ],
+                "boost": 105
+              }
+            }
+          }
+        },
+        {
+          "constant_score": {
+            "boost": 0.0975,
+            "filter": {
+              "multi_match": {
+                "type": "cross_fields",
+                "query": "dock",
+                "fields": [
+                  "option_name.edge^11.6",
+                  "option_description.*^0.542",
+                  "option_name.attr_path_reverse^746"
+                ],
+                "boost": 39.3
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "sort": [
+    {
+      "_score": "desc"
+    }
+  ],
+  "rescore": {
+    "window_size": 100,
+    "query": {
+      "rescore_query": {
+        "function_score": {
+          "script_score": {
+            "script": {
+              "source": "doc['option_name'].size() == 0 ? 0 : 1.0 / doc['option_name'].value.length()"
+            }
+          }
+        }
+      },
+      "rescore_query_weight": 22.3
+    }
+  }
+}

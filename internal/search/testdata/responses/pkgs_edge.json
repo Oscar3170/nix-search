@@ -1,0 +1,40 @@
+{
+  "hits": {
+    "total": {
+      "value": 2,
+      "relation": "eq"
+    },
+    "hits": [
+      {
+        "_index": "x",
+        "_type": "_doc",
+        "_id": "1",
+        "_score": 4.0,
+        "_source": {
+          "type": "package",
+          "package_attr_name": "foo",
+          "package_pversion": "1.0",
+          "package_programs": [],
+          "package_description": "line one\nline two"
+        }
+      },
+      {
+        "_index": "x",
+        "_type": "_doc",
+        "_id": "2",
+        "_score": 3.0,
+        "_source": {
+          "type": "package",
+          "package_attr_name": "averylongpackagename",
+          "package_pversion": "",
+          "package_mainProgram": "bar",
+          "package_programs": [
+            "baz",
+            "bar"
+          ],
+          "package_description": null
+        }
+      }
+    ]
+  }
+}

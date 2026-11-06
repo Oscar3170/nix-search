@@ -1,0 +1,55 @@
+{
+  "total": 5948,
+  "hits": [
+    {
+      "type": "option",
+      "option_source": "nixos/modules/services/web-servers/nginx/default.nix",
+      "option_name": "services.nginx.enable",
+      "option_description": "<rendered-html><p>Whether to enable Nginx Web Server.</p>\n</rendered-html>",
+      "option_type": "boolean",
+      "option_default": "false",
+      "option_example": "true",
+      "option_flake": null
+    },
+    {
+      "type": "option",
+      "option_source": "nixos/modules/services/web-apps/romm.nix",
+      "option_name": "services.romm.nginx.enable",
+      "option_description": "<rendered-html><p>Whether to serve RomM through a local nginx virtual host, as\nupstream’s container image does. The backend only exposes the API; nginx\nserves the frontend, ROM downloads (<code>X-Accel-Redirect</code>,\n<code>mod_zip</code>) and the cross-origin isolation headers for the\nemulator. Point external reverse proxies at this virtual host.</p>\n</rendered-html>",
+      "option_type": "boolean",
+      "option_default": "true",
+      "option_example": null,
+      "option_flake": null
+    },
+    {
+      "type": "option",
+      "option_source": "nixos/modules/services/web-apps/lemmy.nix",
+      "option_name": "services.lemmy.nginx.enable",
+      "option_description": "<rendered-html><p>Whether to enable exposing Lemmy with the nginx reverse proxy.</p>\n</rendered-html>",
+      "option_type": "boolean",
+      "option_default": "false",
+      "option_example": "true",
+      "option_flake": null
+    },
+    {
+      "type": "option",
+      "option_source": "nixos/modules/services/misc/gitweb.nix",
+      "option_name": "services.gitweb.nginx.enable",
+      "option_description": "<rendered-html><p>If true, enable gitweb in nginx.</p>\n</rendered-html>",
+      "option_type": "boolean",
+      "option_default": "false",
+      "option_example": null,
+      "option_flake": null
+    },
+    {
+      "type": "option",
+      "option_source": "nixos/modules/services/web-apps/netbox.nix",
+      "option_name": "services.netbox.nginx.enable",
+      "option_description": "<rendered-html><p>Whether to enable nginx and configure a virtual host.</p>\n</rendered-html>",
+      "option_type": "boolean",
+      "option_default": "false",
+      "option_example": "true",
+      "option_flake": null
+    }
+  ]
+}

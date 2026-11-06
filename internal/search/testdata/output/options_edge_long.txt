@@ -1,0 +1,5 @@
+services.foo.enable                                     boolean
+                                                                 Whether to enable "foo". See the docs .
+services.averylongoptionnamethatoverflowsthecolumn.bar           a default value long enough to be truncated in the regular output style
+                                                                 nixos/modules/services/foo.nix
+services.bar                                                   

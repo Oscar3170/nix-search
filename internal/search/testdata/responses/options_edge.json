@@ -1,0 +1,54 @@
+{
+  "hits": {
+    "total": {
+      "value": 2,
+      "relation": "eq"
+    },
+    "hits": [
+      {
+        "_index": "x",
+        "_type": "_doc",
+        "_id": "1",
+        "_score": 9.5,
+        "_source": {
+          "type": "option",
+          "option_name": "services.foo.enable",
+          "option_description": "<rendered-html><p>Whether to enable &quot;foo&quot;.\n\nSee <a href=\"https://example.com\">the docs</a>.</p>\n</rendered-html>",
+          "option_type": "boolean",
+          "option_default": "",
+          "option_example": "true",
+          "option_flake": null
+        }
+      },
+      {
+        "_index": "x",
+        "_type": "_doc",
+        "_id": "2",
+        "_score": 1.5,
+        "_source": {
+          "type": "option",
+          "option_name": "services.averylongoptionnamethatoverflowsthecolumn.bar",
+          "option_description": "",
+          "option_type": "",
+          "option_default": "a default value long enough to be truncated in the regular output style",
+          "option_source": "nixos/modules/services/foo.nix",
+          "option_example": null,
+          "option_flake": null
+        }
+      },
+      {
+        "_index": "x",
+        "_type": "_doc",
+        "_id": "3",
+        "_score": 1.0,
+        "_source": {
+          "type": "option",
+          "option_name": "services.bar",
+          "option_description": null,
+          "option_type": null,
+          "option_default": null
+        }
+      }
+    ]
+  }
+}

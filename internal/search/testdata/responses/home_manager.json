@@ -1,0 +1,76 @@
+{
+  "took": 22,
+  "timed_out": false,
+  "_shards": {
+    "total": 1,
+    "successful": 1,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 53,
+      "relation": "eq"
+    },
+    "max_score": 10.177684,
+    "hits": [
+      {
+        "_index": "nixos-51-unstable-e7439b6b14ad3cc35d05608ebca9bce01a25f5f8",
+        "_type": "_doc",
+        "_id": "bD-WHKEBzRbTPAxEokAW",
+        "_score": 10.177684,
+        "_source": {
+          "type": "home-manager-option",
+          "option_source": "modules/programs/git.nix",
+          "option_name": "programs.git.enable",
+          "option_description": "<rendered-html><p>Whether to enable Git.</p>\n</rendered-html>",
+          "option_type": "boolean",
+          "option_default": "false",
+          "option_example": "true",
+          "option_flake": null
+        },
+        "matched_queries": [
+          "filter_home_manager_options"
+        ]
+      },
+      {
+        "_index": "nixos-51-unstable-e7439b6b14ad3cc35d05608ebca9bce01a25f5f8",
+        "_type": "_doc",
+        "_id": "bT-WHKEBzRbTPAxEokAW",
+        "_score": 10.114888,
+        "_source": {
+          "type": "home-manager-option",
+          "option_source": "modules/programs/git.nix",
+          "option_name": "programs.git.hooks",
+          "option_description": "<rendered-html><p>Configuration helper for Git hooks. See <a\nhref=\"https://git-scm.com/docs/githooks\">https://git-scm.com/docs/githooks</a>\nfor reference.</p>\n</rendered-html>",
+          "option_type": "attribute set of absolute path",
+          "option_default": "{ }",
+          "option_example": "{\n  pre-commit = ./pre-commit-script;\n}\n",
+          "option_flake": null
+        },
+        "matched_queries": [
+          "filter_home_manager_options"
+        ]
+      },
+      {
+        "_index": "nixos-51-unstable-e7439b6b14ad3cc35d05608ebca9bce01a25f5f8",
+        "_type": "_doc",
+        "_id": "ej-WHKEBzRbTPAxEokAW",
+        "_score": 10.101999,
+        "_source": {
+          "type": "home-manager-option",
+          "option_source": "modules/programs/git.nix",
+          "option_name": "programs.git.package",
+          "option_description": "<rendered-html><p>The git package to use. Use <code class=\"interpreted-text\"\nrole=\"var\">pkgs.gitFull</code> to gain access to <code\nclass=\"interpreted-text\" role=\"command\">git send-email</code> for\ninstance.</p>\n</rendered-html>",
+          "option_type": "null or package",
+          "option_default": "pkgs.git",
+          "option_example": "pkgs.gitFull",
+          "option_flake": null
+        },
+        "matched_queries": [
+          "filter_home_manager_options"
+        ]
+      }
+    ]
+  }
+}

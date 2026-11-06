@@ -1,0 +1,15 @@
+services.nginx.enable         boolean  false
+                                       Whether to enable Nginx Web Server.
+                                       nixos/modules/services/web-servers/nginx/default.nix
+services.romm.nginx.enable    boolean  true
+                                       Whether to serve RomM through a local nginx virtual host, as upstream’s container image does. The backend only exposes the API; nginx serves the frontend, ROM downloads ( X-Accel-Redirect , mod_zip ) and the cross-origin isolation headers for the emulator. Point external reverse proxies at this virtual host.
+                                       nixos/modules/services/web-apps/romm.nix
+services.lemmy.nginx.enable   boolean  false
+                                       Whether to enable exposing Lemmy with the nginx reverse proxy.
+                                       nixos/modules/services/web-apps/lemmy.nix
+services.gitweb.nginx.enable  boolean  false
+                                       If true, enable gitweb in nginx.
+                                       nixos/modules/services/misc/gitweb.nix
+services.netbox.nginx.enable  boolean  false
+                                       Whether to enable nginx and configure a virtual host.
+                                       nixos/modules/services/web-apps/netbox.nix

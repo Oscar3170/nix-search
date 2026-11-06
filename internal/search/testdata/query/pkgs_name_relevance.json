@@ -1,0 +1,48 @@
+{
+  "from": 0,
+  "size": 50,
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "term": {
+            "type": "package"
+          }
+        }
+      ],
+      "must": [
+        {
+          "multi_match": {
+            "query": "firefox-eww",
+            "type": "best_fields",
+            "operator": "and",
+            "fields": [
+              "package_attr_name.edge^4",
+              "package_pname.edge^3"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "sort": [
+    {
+      "_score": "desc"
+    }
+  ],
+  "rescore": {
+    "window_size": 100,
+    "query": {
+      "rescore_query": {
+        "function_score": {
+          "script_score": {
+            "script": {
+              "source": "1.0 / doc['package_attr_name'].value.length()"
+            }
+          }
+        }
+      },
+      "rescore_query_weight": 20
+    }
+  }
+}

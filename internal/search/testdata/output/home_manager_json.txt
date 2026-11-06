@@ -1,0 +1,35 @@
+{
+  "total": 53,
+  "hits": [
+    {
+      "type": "home-manager-option",
+      "option_source": "modules/programs/git.nix",
+      "option_name": "programs.git.enable",
+      "option_description": "<rendered-html><p>Whether to enable Git.</p>\n</rendered-html>",
+      "option_type": "boolean",
+      "option_default": "false",
+      "option_example": "true",
+      "option_flake": null
+    },
+    {
+      "type": "home-manager-option",
+      "option_source": "modules/programs/git.nix",
+      "option_name": "programs.git.hooks",
+      "option_description": "<rendered-html><p>Configuration helper for Git hooks. See <a\nhref=\"https://git-scm.com/docs/githooks\">https://git-scm.com/docs/githooks</a>\nfor reference.</p>\n</rendered-html>",
+      "option_type": "attribute set of absolute path",
+      "option_default": "{ }",
+      "option_example": "{\n  pre-commit = ./pre-commit-script;\n}\n",
+      "option_flake": null
+    },
+    {
+      "type": "home-manager-option",
+      "option_source": "modules/programs/git.nix",
+      "option_name": "programs.git.package",
+      "option_description": "<rendered-html><p>The git package to use. Use <code class=\"interpreted-text\"\nrole=\"var\">pkgs.gitFull</code> to gain access to <code\nclass=\"interpreted-text\" role=\"command\">git send-email</code> for\ninstance.</p>\n</rendered-html>",
+      "option_type": "null or package",
+      "option_default": "pkgs.git",
+      "option_example": "pkgs.gitFull",
+      "option_flake": null
+    }
+  ]
+}

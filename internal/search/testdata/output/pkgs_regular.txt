@@ -1,0 +1,5 @@
+ripgrep                15.2.0         rg
+ripgrep-all            0.10.10        rga, rga-fzf-open, rga-preproc, rga-fzf
+emacsPackages.ripgrep  20220520.1410
+vgrep                  2.8.0          vgrep
+repgrep                0.17.1         rgr

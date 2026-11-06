@@ -1,0 +1,5 @@
+services.nginx.enable         boolean  false
+services.romm.nginx.enable    boolean  true
+services.lemmy.nginx.enable   boolean  false
+services.gitweb.nginx.enable  boolean  false
+services.netbox.nginx.enable  boolean  false

@@ -1,0 +1,507 @@
+{
+  "total": 11,
+  "hits": [
+    {
+      "type": "package",
+      "package_attr_name": "ripgrep",
+      "package_attr_set": "No package set",
+      "package_pname": "ripgrep",
+      "package_pversion": "15.2.0",
+      "package_platforms": [
+        "i686-netbsd",
+        "s390x-linux",
+        "powerpc64-linux",
+        "x86_64-openbsd",
+        "mips64el-linux",
+        "armv7a-linux",
+        "x86_64-redox",
+        "powerpc64le-linux",
+        "armv7l-linux",
+        "x86_64-linux",
+        "mipsel-netbsd",
+        "x86_64-windows",
+        "x86_64-solaris",
+        "aarch64-darwin",
+        "powerpc-linux",
+        "x86_64-freebsd",
+        "i686-openbsd",
+        "i686-linux",
+        "riscv64-linux",
+        "mipsel-linux",
+        "x86_64-netbsd",
+        "riscv32-linux",
+        "armv7l-netbsd",
+        "i686-freebsd",
+        "loongarch64-linux",
+        "m68k-linux",
+        "mips64-linux",
+        "armv6l-netbsd",
+        "riscv32-none",
+        "wasm32-wasip1",
+        "aarch64-linux",
+        "armv5tel-linux",
+        "aarch64-netbsd",
+        "powerpc-netbsd",
+        "i686-windows",
+        "riscv64-netbsd",
+        "mips-linux",
+        "armv6l-linux"
+      ],
+      "package_outputs": [
+        "out"
+      ],
+      "package_default_output": "out",
+      "package_programs": [
+        "rg"
+      ],
+      "package_mainProgram": "rg",
+      "package_license": [
+        {
+          "url": "https://spdx.org/licenses/Unlicense.html",
+          "fullName": "The Unlicense",
+          "shortName": "unlicense",
+          "spdxId": "Unlicense"
+        },
+        {
+          "url": "https://spdx.org/licenses/MIT.html",
+          "fullName": "MIT License",
+          "shortName": "mit",
+          "spdxId": "MIT"
+        }
+      ],
+      "package_license_set": [
+        "Unlicense",
+        "MIT"
+      ],
+      "package_license_expression": null,
+      "package_maintainers": [
+        {
+          "name": "Robin Gloster",
+          "github": "globin",
+          "email": "mail@glob.in"
+        },
+        {
+          "name": "Maximilian Bosch",
+          "github": "Ma27",
+          "email": "maximilian@mbosch.me"
+        },
+        {
+          "name": "zowoq",
+          "github": "zowoq",
+          "email": null
+        }
+      ],
+      "package_maintainers_set": [
+        "Robin Gloster",
+        "Maximilian Bosch",
+        "zowoq"
+      ],
+      "package_teams": [],
+      "package_teams_set": [],
+      "package_description": "Utility that combines the usability of The Silver Searcher with the raw speed of grep",
+      "package_longDescription": null,
+      "package_hydra": null,
+      "package_system": "x86_64-linux",
+      "package_homepage": [
+        "https://github.com/BurntSushi/ripgrep"
+      ],
+      "package_position": "pkgs/by-name/ri/ripgrep/package.nix:66",
+      "package_modular_services": [],
+      "package_dep_count": 61,
+      "package_repology_repos": 123
+    },
+    {
+      "type": "package",
+      "package_attr_name": "ripgrep-all",
+      "package_attr_set": "No package set",
+      "package_pname": "ripgrep-all",
+      "package_pversion": "0.10.10",
+      "package_platforms": [
+        "loongarch64-linux",
+        "riscv32-none",
+        "i686-netbsd",
+        "riscv32-linux",
+        "x86_64-freebsd",
+        "powerpc64le-linux",
+        "x86_64-netbsd",
+        "i686-windows",
+        "x86_64-windows",
+        "armv7a-linux",
+        "riscv64-netbsd",
+        "aarch64-netbsd",
+        "x86_64-redox",
+        "aarch64-darwin",
+        "armv7l-netbsd",
+        "m68k-linux",
+        "armv6l-netbsd",
+        "mipsel-linux",
+        "x86_64-solaris",
+        "mips64-linux",
+        "powerpc64-linux",
+        "s390x-linux",
+        "x86_64-openbsd",
+        "armv7l-linux",
+        "armv6l-linux",
+        "i686-freebsd",
+        "powerpc-linux",
+        "i686-linux",
+        "powerpc-netbsd",
+        "mipsel-netbsd",
+        "aarch64-linux",
+        "i686-openbsd",
+        "armv5tel-linux",
+        "riscv64-linux",
+        "x86_64-linux",
+        "mips64el-linux",
+        "mips-linux",
+        "wasm32-wasip1"
+      ],
+      "package_outputs": [
+        "out"
+      ],
+      "package_default_output": "out",
+      "package_programs": [
+        "rga-fzf-open",
+        "rga-preproc",
+        "rga-fzf",
+        "rga"
+      ],
+      "package_mainProgram": "rga",
+      "package_license": [
+        {
+          "url": "https://spdx.org/licenses/AGPL-3.0-or-later.html",
+          "fullName": "GNU Affero General Public License v3.0 or later",
+          "shortName": "agpl3Plus",
+          "spdxId": "AGPL-3.0-or-later"
+        }
+      ],
+      "package_license_set": [
+        "AGPL-3.0-or-later"
+      ],
+      "package_license_expression": null,
+      "package_maintainers": [
+        {
+          "name": "Francesco Zanini",
+          "github": "zaninime",
+          "email": "francesco@zanini.me"
+        },
+        {
+          "name": "Maximilian Bosch",
+          "github": "Ma27",
+          "email": "maximilian@mbosch.me"
+        }
+      ],
+      "package_maintainers_set": [
+        "Francesco Zanini",
+        "Maximilian Bosch"
+      ],
+      "package_teams": [],
+      "package_teams_set": [],
+      "package_description": "Ripgrep, but also search in PDFs, E-Books, Office documents, zip, tar.gz, and more",
+      "package_longDescription": "<rendered-html><p>Ripgrep, but also search in PDFs, E-Books, Office documents, zip,\ntar.gz, etc.</p>\n<p>rga is a line-oriented search tool that allows you to look for a\nregex in a multitude of file types. rga wraps the awesome ripgrep and\nenables it to search in pdf, docx, sqlite, jpg, movie subtitles (mkv,\nmp4), etc.</p>\n</rendered-html>",
+      "package_hydra": null,
+      "package_system": "x86_64-linux",
+      "package_homepage": [
+        "https://github.com/phiresky/ripgrep-all"
+      ],
+      "package_position": "pkgs/by-name/ri/ripgrep-all/package.nix:56",
+      "package_modular_services": [],
+      "package_repology_repos": 40
+    },
+    {
+      "type": "package",
+      "package_attr_name": "emacsPackages.ripgrep",
+      "package_attr_set": "emacsPackages",
+      "package_pname": "ripgrep",
+      "package_pversion": "20220520.1410",
+      "package_platforms": [
+        "armv6l-linux",
+        "armv6l-none",
+        "i686-windows",
+        "x86_64-cygwin",
+        "armv6l-netbsd",
+        "powerpcle-none",
+        "microblaze-linux",
+        "aarch64-none",
+        "wasm32-wasip1",
+        "i686-none",
+        "x86_64-linux",
+        "s390-linux",
+        "loongarch64-linux",
+        "s390x-linux",
+        "mips-linux",
+        "aarch64-freebsd",
+        "powerpc64-linux",
+        "x86_64-windows",
+        "m68k-none",
+        "powerpc-netbsd",
+        "sh4-linux",
+        "javascript-ghcjs",
+        "avr-none",
+        "x86_64-solaris",
+        "aarch64_be-none",
+        "microblaze-none",
+        "x86_64-netbsd",
+        "mips64-none",
+        "mips64-linux",
+        "mipsel-linux",
+        "riscv64-linux",
+        "s390-none",
+        "wasm64-wasip1",
+        "armv7a-netbsd",
+        "powerpc-none",
+        "armv7a-linux",
+        "s390x-none",
+        "arc-linux",
+        "powerpc-linux",
+        "aarch64-uefi",
+        "powerpc64le-linux",
+        "arm-none",
+        "aarch64-netbsd",
+        "x86_64-freebsd",
+        "aarch64-genode",
+        "x86_64-redox",
+        "i686-freebsd",
+        "m68k-linux",
+        "microblazeel-none",
+        "armv7l-netbsd",
+        "x86_64-genode",
+        "riscv64-netbsd",
+        "aarch64-darwin",
+        "mips64el-linux",
+        "mips-none",
+        "rx-none",
+        "aarch64-linux",
+        "riscv64-none",
+        "i686-openbsd",
+        "vc4-none",
+        "i686-genode",
+        "m68k-netbsd",
+        "i686-linux",
+        "riscv32-none",
+        "microblazeel-linux",
+        "or1k-none",
+        "armv5tel-linux",
+        "armv7l-linux",
+        "riscv32-netbsd",
+        "mipsel-netbsd",
+        "aarch64-windows",
+        "mmix-mmixware",
+        "msp430-none",
+        "x86_64-openbsd",
+        "riscv32-linux",
+        "x86_64-uefi",
+        "i686-netbsd",
+        "i686-cygwin",
+        "x86_64-none"
+      ],
+      "package_outputs": [
+        "out"
+      ],
+      "package_default_output": "out",
+      "package_programs": [],
+      "package_mainProgram": null,
+      "package_license": [],
+      "package_license_set": [],
+      "package_license_expression": null,
+      "package_maintainers": [],
+      "package_maintainers_set": [],
+      "package_teams": [],
+      "package_teams_set": [],
+      "package_description": null,
+      "package_longDescription": null,
+      "package_hydra": null,
+      "package_system": "x86_64-linux",
+      "package_homepage": [
+        "https://github.com/nlamirault/ripgrep.el"
+      ],
+      "package_position": "pkgs/applications/editors/emacs/elisp-packages/libgenerated.nix:139",
+      "package_modular_services": [],
+      "package_repology_repos": 9
+    },
+    {
+      "type": "package",
+      "package_attr_name": "vgrep",
+      "package_attr_set": "No package set",
+      "package_pname": "vgrep",
+      "package_pversion": "2.8.0",
+      "package_platforms": [
+        "i686-freebsd",
+        "armv6l-linux",
+        "mips64el-linux",
+        "m68k-linux",
+        "microblazeel-linux",
+        "mips-linux",
+        "loongarch64-linux",
+        "powerpc-linux",
+        "aarch64-darwin",
+        "x86_64-linux",
+        "mips64-linux",
+        "arc-linux",
+        "s390-linux",
+        "powerpc64le-linux",
+        "armv5tel-linux",
+        "riscv32-linux",
+        "microblaze-linux",
+        "armv7a-linux",
+        "i686-linux",
+        "riscv64-linux",
+        "wasm64-wasip1",
+        "sh4-linux",
+        "armv7l-linux",
+        "wasm32-wasip1",
+        "powerpc64-linux",
+        "aarch64-linux",
+        "aarch64-freebsd",
+        "x86_64-freebsd",
+        "mipsel-linux",
+        "s390x-linux"
+      ],
+      "package_outputs": [
+        "out"
+      ],
+      "package_default_output": "out",
+      "package_programs": [
+        "vgrep"
+      ],
+      "package_mainProgram": "vgrep",
+      "package_license": [
+        {
+          "url": "https://spdx.org/licenses/GPL-3.0-only.html",
+          "fullName": "GNU General Public License v3.0 only",
+          "shortName": "gpl3Only",
+          "spdxId": "GPL-3.0-only"
+        }
+      ],
+      "package_license_set": [
+        "GPL-3.0-only"
+      ],
+      "package_license_expression": null,
+      "package_maintainers": [
+        {
+          "name": "Sandro Jäckel",
+          "github": "SuperSandro2000",
+          "email": "sandro.jaeckel@gmail.com"
+        }
+      ],
+      "package_maintainers_set": [
+        "Sandro Jäckel"
+      ],
+      "package_teams": [],
+      "package_teams_set": [],
+      "package_description": "User-friendly pager for grep/git-grep/ripgrep",
+      "package_longDescription": null,
+      "package_hydra": null,
+      "package_system": "x86_64-linux",
+      "package_homepage": [
+        "https://github.com/vrothberg/vgrep"
+      ],
+      "package_position": "pkgs/by-name/vg/vgrep/package.nix:40",
+      "package_modular_services": [],
+      "package_repology_repos": 28
+    },
+    {
+      "type": "package",
+      "package_attr_name": "repgrep",
+      "package_attr_set": "No package set",
+      "package_pname": "repgrep",
+      "package_pversion": "0.17.1",
+      "package_platforms": [
+        "powerpc64le-linux",
+        "x86_64-netbsd",
+        "loongarch64-linux",
+        "mips64el-linux",
+        "i686-netbsd",
+        "x86_64-redox",
+        "armv6l-netbsd",
+        "s390x-linux",
+        "riscv64-netbsd",
+        "powerpc64-linux",
+        "aarch64-netbsd",
+        "i686-linux",
+        "powerpc-netbsd",
+        "mipsel-linux",
+        "riscv64-linux",
+        "x86_64-openbsd",
+        "x86_64-windows",
+        "mips-linux",
+        "armv7l-netbsd",
+        "armv5tel-linux",
+        "mipsel-netbsd",
+        "riscv32-none",
+        "mips64-linux",
+        "riscv32-linux",
+        "powerpc-linux",
+        "x86_64-freebsd",
+        "aarch64-darwin",
+        "i686-freebsd",
+        "i686-windows",
+        "aarch64-linux",
+        "armv7l-linux",
+        "x86_64-linux",
+        "wasm32-wasip1",
+        "armv7a-linux",
+        "i686-openbsd",
+        "x86_64-solaris",
+        "armv6l-linux",
+        "m68k-linux"
+      ],
+      "package_outputs": [
+        "out"
+      ],
+      "package_default_output": "out",
+      "package_programs": [
+        "rgr"
+      ],
+      "package_mainProgram": "rgr",
+      "package_license": [
+        {
+          "url": "https://spdx.org/licenses/MIT.html",
+          "fullName": "MIT License",
+          "shortName": "mit",
+          "spdxId": "MIT"
+        },
+        {
+          "url": "https://spdx.org/licenses/Apache-2.0.html",
+          "fullName": "Apache License 2.0",
+          "shortName": "asl20",
+          "spdxId": "Apache-2.0"
+        },
+        {
+          "url": "https://spdx.org/licenses/Unlicense.html",
+          "fullName": "The Unlicense",
+          "shortName": "unlicense",
+          "spdxId": "Unlicense"
+        }
+      ],
+      "package_license_set": [
+        "MIT",
+        "Apache-2.0",
+        "Unlicense"
+      ],
+      "package_license_expression": null,
+      "package_maintainers": [
+        {
+          "name": "Angel J",
+          "github": "iamanaws",
+          "email": "iamanaws@httpd.dev"
+        }
+      ],
+      "package_maintainers_set": [
+        "Angel J"
+      ],
+      "package_teams": [],
+      "package_teams_set": [],
+      "package_description": "Interactive replacer for ripgrep that makes it easy to find and replace across files on the command line",
+      "package_longDescription": null,
+      "package_hydra": null,
+      "package_system": "x86_64-linux",
+      "package_homepage": [
+        "https://github.com/acheronfail/repgrep"
+      ],
+      "package_position": "pkgs/by-name/re/repgrep/package.nix:54",
+      "package_modular_services": [],
+      "package_repology_repos": 19
+    }
+  ]
+}

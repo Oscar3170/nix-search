@@ -1,0 +1,145 @@
+{
+  "from": 0,
+  "size": 10,
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "term": {
+            "type": {
+              "value": "option",
+              "_name": "filter_options"
+            }
+          }
+        }
+      ],
+      "must": [
+        {
+          "dis_max": {
+            "boost": 8.33,
+            "tie_breaker": 0.509,
+            "queries": [
+              {
+                "prefix": {
+                  "option_name.attr_path_reverse": {
+                    "value": "-nginx-enable",
+                    "boost": 26.4
+                  }
+                }
+              },
+              {
+                "wildcard": {
+                  "option_name.edge": {
+                    "value": "*nginx*"
+                  }
+                }
+              },
+              {
+                "wildcard": {
+                  "option_name.edge": {
+                    "value": "*enable*"
+                  }
+                }
+              },
+              {
+                "multi_match": {
+                  "type": "best_fields",
+                  "query": "nginx enable",
+                  "fields": [
+                    "option_description^1"
+                  ],
+                  "boost": 0.0001,
+                  "fuzziness": "1",
+                  "prefix_length": 1
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "should": [
+        {
+          "wildcard": {
+            "option_name.attr_path": {
+              "value": "*nginx.enable*",
+              "boost": 0.546
+            }
+          }
+        },
+        {
+          "wildcard": {
+            "option_name.attr_path_reverse": {
+              "value": "*nginx.enable.package*",
+              "boost": 0.111
+            }
+          }
+        },
+        {
+          "constant_score": {
+            "boost": 0.128,
+            "filter": {
+              "multi_match": {
+                "type": "phrase_prefix",
+                "query": "enable",
+                "fields": [
+                  "option_name.edge^11.6",
+                  "option_name.attr_path_reverse^682"
+                ],
+                "boost": 5.45,
+                "operator": "or"
+              }
+            }
+          }
+        },
+        {
+          "prefix": {
+            "option_name.attr_path_reverse": {
+              "value": "enable",
+              "boost": 206,
+              "case_insensitive": true
+            }
+          }
+        },
+        {
+          "constant_score": {
+            "boost": 0.0682,
+            "filter": {
+              "multi_match": {
+                "type": "phrase",
+                "query": "nginx",
+                "fields": [
+                  "option_description^11.6",
+                  "option_description.*^0.65",
+                  "option_name^630"
+                ],
+                "boost": 105
+              }
+            }
+          }
+        },
+        {
+          "constant_score": {
+            "boost": 0.0975,
+            "filter": {
+              "multi_match": {
+                "type": "cross_fields",
+                "query": "nginx",
+                "fields": [
+                  "option_name.edge^11.6",
+                  "option_description.*^0.542",
+                  "option_name.attr_path_reverse^746"
+                ],
+                "boost": 39.3
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "sort": [
+    {
+      "option_name": "asc"
+    }
+  ]
+}

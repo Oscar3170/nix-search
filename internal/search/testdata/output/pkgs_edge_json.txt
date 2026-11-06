@@ -1,0 +1,23 @@
+{
+  "total": 2,
+  "hits": [
+    {
+      "type": "package",
+      "package_attr_name": "foo",
+      "package_pversion": "1.0",
+      "package_programs": [],
+      "package_description": "line one\nline two"
+    },
+    {
+      "type": "package",
+      "package_attr_name": "averylongpackagename",
+      "package_pversion": "",
+      "package_mainProgram": "bar",
+      "package_programs": [
+        "baz",
+        "bar"
+      ],
+      "package_description": null
+    }
+  ]
+}

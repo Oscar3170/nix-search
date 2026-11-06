@@ -1,0 +1,114 @@
+{
+  "took": 62,
+  "timed_out": false,
+  "_shards": {
+    "total": 1,
+    "successful": 1,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 5948,
+      "relation": "eq"
+    },
+    "max_score": 220.4748,
+    "hits": [
+      {
+        "_index": "nixos-51-unstable-e7439b6b14ad3cc35d05608ebca9bce01a25f5f8",
+        "_type": "_doc",
+        "_id": "dBp9HKEBjFGxZWo29ye7",
+        "_score": 220.4748,
+        "_source": {
+          "type": "option",
+          "option_source": "nixos/modules/services/web-servers/nginx/default.nix",
+          "option_name": "services.nginx.enable",
+          "option_description": "<rendered-html><p>Whether to enable Nginx Web Server.</p>\n</rendered-html>",
+          "option_type": "boolean",
+          "option_default": "false",
+          "option_example": "true",
+          "option_flake": null
+        },
+        "matched_queries": [
+          "filter_options"
+        ]
+      },
+      {
+        "_index": "nixos-51-unstable-e7439b6b14ad3cc35d05608ebca9bce01a25f5f8",
+        "_type": "_doc",
+        "_id": "RxqIHKEBjFGxZWo2EHK9",
+        "_score": 220.26929,
+        "_source": {
+          "type": "option",
+          "option_source": "nixos/modules/services/web-apps/romm.nix",
+          "option_name": "services.romm.nginx.enable",
+          "option_description": "<rendered-html><p>Whether to serve RomM through a local nginx virtual host, as\nupstream’s container image does. The backend only exposes the API; nginx\nserves the frontend, ROM downloads (<code>X-Accel-Redirect</code>,\n<code>mod_zip</code>) and the cross-origin isolation headers for the\nemulator. Point external reverse proxies at this virtual host.</p>\n</rendered-html>",
+          "option_type": "boolean",
+          "option_default": "true",
+          "option_example": null,
+          "option_flake": null
+        },
+        "matched_queries": [
+          "filter_options"
+        ]
+      },
+      {
+        "_index": "nixos-51-unstable-e7439b6b14ad3cc35d05608ebca9bce01a25f5f8",
+        "_type": "_doc",
+        "_id": "oxp9HKEBjFGxZWo29xu6",
+        "_score": 220.23868,
+        "_source": {
+          "type": "option",
+          "option_source": "nixos/modules/services/web-apps/lemmy.nix",
+          "option_name": "services.lemmy.nginx.enable",
+          "option_description": "<rendered-html><p>Whether to enable exposing Lemmy with the nginx reverse proxy.</p>\n</rendered-html>",
+          "option_type": "boolean",
+          "option_default": "false",
+          "option_example": "true",
+          "option_flake": null
+        },
+        "matched_queries": [
+          "filter_options"
+        ]
+      },
+      {
+        "_index": "nixos-51-unstable-e7439b6b14ad3cc35d05608ebca9bce01a25f5f8",
+        "_type": "_doc",
+        "_id": "vRp0HKEBjFGxZWo2Lw9v",
+        "_score": 220.2094,
+        "_source": {
+          "type": "option",
+          "option_source": "nixos/modules/services/misc/gitweb.nix",
+          "option_name": "services.gitweb.nginx.enable",
+          "option_description": "<rendered-html><p>If true, enable gitweb in nginx.</p>\n</rendered-html>",
+          "option_type": "boolean",
+          "option_default": "false",
+          "option_example": null,
+          "option_flake": null
+        },
+        "matched_queries": [
+          "filter_options"
+        ]
+      },
+      {
+        "_index": "nixos-51-unstable-e7439b6b14ad3cc35d05608ebca9bce01a25f5f8",
+        "_type": "_doc",
+        "_id": "TRp9HKEBjFGxZWo29ya7",
+        "_score": 220.20924,
+        "_source": {
+          "type": "option",
+          "option_source": "nixos/modules/services/web-apps/netbox.nix",
+          "option_name": "services.netbox.nginx.enable",
+          "option_description": "<rendered-html><p>Whether to enable nginx and configure a virtual host.</p>\n</rendered-html>",
+          "option_type": "boolean",
+          "option_default": "false",
+          "option_example": "true",
+          "option_flake": null
+        },
+        "matched_queries": [
+          "filter_options"
+        ]
+      }
+    ]
+  }
+}
