@@ -11,6 +11,7 @@ import (
 	"strings"
 
 	"github.com/oscar3170/nix-search/internal/search"
+	"github.com/oscar3170/nix-search/internal/style"
 )
 
 // Defaults for the global flags.
@@ -33,6 +34,8 @@ type Options struct {
 	Sort       search.Sort
 	Output     search.OutputFormat
 	MaxResults int
+	// Color decides whether the help text is colorized.
+	Color style.Mode
 	// Help reports that -h/--help was given.
 	Help bool
 }
@@ -47,6 +50,11 @@ func (o *Options) Request() search.Query {
 		Sort:    o.Sort,
 		Size:    o.MaxResults,
 	}
+}
+
+// paletteFor resolves the palette for the given output stream.
+func paletteFor(w io.Writer, mode style.Mode) style.Palette {
+	return style.Palette{Enabled: style.Enabled(mode, w)}
 }
 
 // Searcher is the part of search.Client the CLI needs.
@@ -64,7 +72,7 @@ func Main(argv []string, stdout, stderr io.Writer, searcher Searcher) int {
 // MainContext is Main with a caller-supplied context for the search request.
 func MainContext(ctx context.Context, argv []string, stdout, stderr io.Writer, searcher Searcher) int {
 	if len(argv) == 0 {
-		fmt.Fprint(stderr, Usage)
+		fmt.Fprint(stderr, Help(paletteFor(stderr, style.ModeAuto)))
 		return 2
 	}
 
@@ -75,7 +83,7 @@ func MainContext(ctx context.Context, argv []string, stdout, stderr io.Writer, s
 		return 2
 	}
 	if opts.Help {
-		fmt.Fprint(stdout, Usage)
+		fmt.Fprint(stdout, Help(paletteFor(stdout, opts.Color)))
 		return 0
 	}
 
@@ -100,6 +108,7 @@ func Parse(argv []string) (*Options, error) {
 		Sort:       search.SortRelevance,
 		Output:     search.OutputRegular,
 		MaxResults: DefaultMaxResults,
+		Color:      style.ModeAuto,
 	}
 
 	var words []string
@@ -185,6 +194,16 @@ func Parse(argv []string) (*Options, error) {
 				return nil, fmt.Errorf("invalid output %q (want short, regular, long or json)", v)
 			}
 			opts.Output = format
+		case "--color":
+			v, err := value()
+			if err != nil {
+				return nil, err
+			}
+			mode, ok := style.ParseMode(v)
+			if !ok {
+				return nil, fmt.Errorf("invalid color %q (want auto, always or never)", v)
+			}
+			opts.Color = mode
 		case "--name", "--programs":
 			if hasInline {
 				return nil, fmt.Errorf("flag %s does not take a value", name)

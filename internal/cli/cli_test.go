@@ -1,10 +1,12 @@
 package cli
 
 import (
+	"regexp"
 	"strings"
 	"testing"
 
 	"github.com/oscar3170/nix-search/internal/search"
+	"github.com/oscar3170/nix-search/internal/style"
 )
 
 // defaultOptions is the parsed form of a bare `nix-search <query>`.
@@ -17,6 +19,7 @@ func defaultOptions(text string) *Options {
 		Sort:       search.SortRelevance,
 		Output:     search.OutputRegular,
 		MaxResults: DefaultMaxResults,
+		Color:      style.ModeAuto,
 	}
 }
 
@@ -93,6 +96,15 @@ func TestParse(t *testing.T) {
 			}(),
 		},
 		{
+			name: "color mode",
+			argv: []string{"--color=always", "git"},
+			want: func() *Options {
+				o := defaultOptions("git")
+				o.Color = style.ModeAlways
+				return o
+			}(),
+		},
+		{
 			name: "double dash ends flag parsing",
 			argv: []string{"--", "-foo"},
 			want: defaultOptions("-foo"),
@@ -137,6 +149,7 @@ func TestParseErrors(t *testing.T) {
 		"name on options source":  {[]string{"nixos", "--name", "foo"}, "only valid for the pkgs subcommand"},
 		"name with a value":       {[]string{"--name=1", "foo"}, "does not take a value"},
 		"malformed channel":       {[]string{"-c", "bad channel", "git"}, "invalid channel"},
+		"unknown color mode":      {[]string{"--color", "sometimes", "git"}, "invalid color"},
 	}
 
 	for name, tc := range cases {
@@ -151,3 +164,27 @@ func TestParseErrors(t *testing.T) {
 		})
 	}
 }
+
+// TestHelpColorIsOnlyStyling checks that colorizing the help never changes the
+// text a terminal-less user sees.
+func TestHelpColorIsOnlyStyling(t *testing.T) {
+	plain := Help(style.Palette{})
+	coloredHelp := Help(style.Palette{Enabled: true})
+
+	if !strings.Contains(coloredHelp, "\x1b[") {
+		t.Error("colored help has no escape sequences")
+	}
+	if got := ansiRE.ReplaceAllString(coloredHelp, ""); got != plain {
+		t.Errorf("help differs from plain after stripping ANSI\nwant:\n%q\ngot:\n%q", plain, got)
+	}
+	for _, want := range []string{
+		"Usage:", "Subcommands:", "pkgs flags:", "Global flags:", "Examples:",
+		"home-manager", "--programs", "--color MODE",
+	} {
+		if !strings.Contains(plain, want) {
+			t.Errorf("help does not mention %q", want)
+		}
+	}
+}
+
+var ansiRE = regexp.MustCompile("\x1b\\[[0-9;]*m")

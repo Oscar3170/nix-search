@@ -37,6 +37,15 @@ Output styles are `regular` (default), `long` (adds descriptions and, for
 options, the defining file), `short` (names only) and `json` (the raw documents
 plus the total match count).
 
+## Colors
+
+The help text is colorized when stdout is a terminal and left plain when it is
+piped: bold section headers, bold cyan subcommands and flags, yellow metavars,
+dim example comments.
+
+`--color auto|always|never` overrides the default (`auto`), which also honours
+`NO_COLOR`, `CLICOLOR_FORCE` and `TERM=dumb`.
+
 ## Install
 
 ```console
@@ -115,4 +124,3 @@ error. Because that is a shared public service, the suite only runs with
 `NIX_SEARCH_INTEGRATION=1`, spaces its requests one second apart, and skips
 under `-short` (which is what the Nix build uses, since its sandbox has no
 network).
-
