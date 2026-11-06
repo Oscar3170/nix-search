@@ -61,8 +61,11 @@ identical with or without color.
 `--color auto|always|never` overrides the default (`auto`), which also honours
 `NO_COLOR`, `CLICOLOR_FORCE` and `TERM=dumb`.
 
-Previews are committed under `examples/`; `cat examples/pkgs.ansi` or check the
-[palette table](examples/README.md).
+To preview the palette outside a terminal, force the colors through a pager:
+
+```console
+$ nix-search --color=always -n 5 ripgrep | less -R
+```
 
 ## Install
 

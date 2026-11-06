@@ -21,6 +21,7 @@
 - The flake builds with `-short` because its sandbox has no network; keep new tests offline-safe by default.
 - `NIX_SEARCH_SCHEMA_VERSION` exists to force the alias-discovery path; it is not needed in normal use.
 - Adding a source subcommand means touching `internal/search/source.go`, `query.go`, `internal/cli/help.go` and adding request-body goldens.
+- Color previews are generated locally with `--color=always` into the ignored `examples/` directory; do not commit them.
 
 ## External References
 
@@ -28,5 +29,4 @@
 |------|------|
 | Usage, flags, install | `README.md` |
 | Testdata provenance | `internal/search/testdata/README.md` |
-| Color palette and previews | `examples/README.md` |
 | Package output and checks | `flake.nix` |
