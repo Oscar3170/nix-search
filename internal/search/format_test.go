@@ -1,8 +1,11 @@
 package search
 
 import (
+	"regexp"
 	"strings"
 	"testing"
+
+	"github.com/oscar3170/nix-search/internal/style"
 )
 
 // TestWriteMatchesReference renders committed backend responses and compares
@@ -45,7 +48,7 @@ func TestWriteMatchesReference(t *testing.T) {
 			}
 
 			var out strings.Builder
-			if err := Write(&out, resp, tc.source, tc.format); err != nil {
+			if err := Write(&out, resp, tc.source, tc.format, style.Palette{}); err != nil {
 				t.Fatalf("write: %v", err)
 			}
 
@@ -56,6 +59,48 @@ func TestWriteMatchesReference(t *testing.T) {
 		})
 	}
 }
+
+// TestColorKeepsLayout renders the same hits with and without color: removing
+// the escape sequences must give back the plain output, i.e. the styling never
+// leaks into the column widths.
+func TestColorKeepsLayout(t *testing.T) {
+	colored := style.Palette{Enabled: true}
+
+	for _, fixture := range []struct {
+		name   string
+		source Source
+	}{
+		{"pkgs_edge", SourcePkgs},
+		{"options_edge", SourceNixOS},
+	} {
+		resp, err := parseResponse(readTestdata(t, "responses", fixture.name+".json"))
+		if err != nil {
+			t.Fatalf("parse response: %v", err)
+		}
+
+		for _, format := range []OutputFormat{OutputShort, OutputRegular, OutputLong} {
+			var plain, styled strings.Builder
+			if err := Write(&plain, resp, fixture.source, format, style.Palette{}); err != nil {
+				t.Fatalf("write plain: %v", err)
+			}
+			if err := Write(&styled, resp, fixture.source, format, colored); err != nil {
+				t.Fatalf("write colored: %v", err)
+			}
+
+			if !strings.Contains(styled.String(), "\x1b[") {
+				t.Errorf("%s/%s: no escape sequences in colored output", fixture.name, format)
+			}
+			if got := stripANSI(styled.String()); got != plain.String() {
+				t.Errorf("%s/%s: colored output differs from plain after stripping ANSI\nwant:\n%q\ngot:\n%q",
+					fixture.name, format, plain.String(), got)
+			}
+		}
+	}
+}
+
+var ansiRE = regexp.MustCompile("\x1b\\[[0-9;]*m")
+
+func stripANSI(s string) string { return ansiRE.ReplaceAllString(s, "") }
 
 func TestPlainText(t *testing.T) {
 	cases := []struct {

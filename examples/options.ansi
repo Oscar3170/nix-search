@@ -1,0 +1,5 @@
+[1mservices.nginx.enable       [0m  [35mboolean[0m  [33mfalse[0m
+[1mservices.romm.nginx.enable  [0m  [35mboolean[0m  [33mtrue[0m
+[1mservices.lemmy.nginx.enable [0m  [35mboolean[0m  [33mfalse[0m
+[1mservices.gitweb.nginx.enable[0m  [35mboolean[0m  [33mfalse[0m
+[1mservices.netbox.nginx.enable[0m  [35mboolean[0m  [33mfalse[0m

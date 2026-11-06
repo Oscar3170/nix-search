@@ -177,6 +177,27 @@ func TestStaleSchemaVersionFallback(t *testing.T) {
 	}
 }
 
+// TestColorModes pins the colour decision in the built binary: plain through a
+// pipe, escape sequences with --color=always, never for JSON.
+func TestColorModes(t *testing.T) {
+	const ansi = "\x1b["
+
+	plain := run(t, nil, "-n", "1", "ripgrep")
+	if strings.Contains(plain.stdout, ansi) {
+		t.Errorf("piped output is colorized:\n%q", plain.stdout)
+	}
+
+	forced := run(t, nil, "--color=always", "-n", "1", "ripgrep")
+	if !strings.Contains(forced.stdout, ansi) {
+		t.Errorf("--color=always did not colorize the output:\n%q", forced.stdout)
+	}
+
+	jsonOut := run(t, nil, "--color=always", "-o", "json", "-n", "1", "ripgrep")
+	if strings.Contains(jsonOut.stdout, ansi) {
+		t.Errorf("JSON output is colorized:\n%q", jsonOut.stdout)
+	}
+}
+
 func TestUnknownChannel(t *testing.T) {
 	res := run(t, nil, "-c", "0.01", "-n", "1", "ripgrep")
 	if res.code != 1 {

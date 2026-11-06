@@ -7,6 +7,8 @@ import (
 	"regexp"
 	"strings"
 	"unicode/utf8"
+
+	"github.com/oscar3170/nix-search/internal/style"
 )
 
 // OutputFormat is one of the CLI's output styles.
@@ -36,8 +38,8 @@ func ParseOutput(s string) (OutputFormat, bool) {
 // the non-long output styles.
 const maxDefaultWidth = 60
 
-// Write renders the response to w.
-func Write(w io.Writer, resp *Response, source Source, format OutputFormat) error {
+// Write renders the response to w. JSON output is never colorized.
+func Write(w io.Writer, resp *Response, source Source, format OutputFormat, palette style.Palette) error {
 	var b strings.Builder
 
 	switch {
@@ -53,13 +55,13 @@ func Write(w io.Writer, resp *Response, source Source, format OutputFormat) erro
 			key = func(d Document) string { return d.PackageAttrName }
 		}
 		for _, h := range resp.Hits {
-			b.WriteString(key(h.Doc))
+			b.WriteString(palette.Render(style.Bold, key(h.Doc)))
 			b.WriteByte('\n')
 		}
 	case source != SourcePkgs:
-		writeOptions(&b, resp.Hits, format)
+		writeOptions(&b, resp.Hits, format, palette)
 	default:
-		writePackages(&b, resp.Hits, format)
+		writePackages(&b, resp.Hits, format, palette)
 	}
 
 	_, err := io.WriteString(w, b.String())
@@ -86,7 +88,7 @@ func writeJSON(b *strings.Builder, resp *Response) error {
 	return enc.Encode(out)
 }
 
-func writeOptions(b *strings.Builder, hits []Hit, format OutputFormat) {
+func writeOptions(b *strings.Builder, hits []Hit, format OutputFormat, palette style.Palette) {
 	nameW, typeW := 0, 0
 	for _, h := range hits {
 		nameW = max(nameW, utf8.RuneCountInString(h.Doc.OptionName))
@@ -96,19 +98,20 @@ func writeOptions(b *strings.Builder, hits []Hit, format OutputFormat) {
 
 	for _, h := range hits {
 		d := h.Doc
-		line := padRight(d.OptionName, nameW) + "  " + padRight(d.OptionType, typeW)
+		line := palette.Render(style.Bold, padRight(d.OptionName, nameW)) +
+			"  " + palette.Render(style.Magenta, padRight(d.OptionType, typeW))
 		if def := plainText(d.OptionDefault); def != "" {
 			if format != OutputLong && utf8.RuneCountInString(def) > maxDefaultWidth {
 				def = truncate(def, maxDefaultWidth-3) + "..."
 			}
-			line += "  " + def
+			line += "  " + palette.Render(style.Yellow, def)
 		}
 		if format == OutputLong {
 			if desc := plainText(d.OptionDescription); desc != "" {
-				line += "\n" + pad + desc
+				line += "\n" + pad + palette.Render(style.Dim, desc)
 			}
 			if d.OptionSource != "" {
-				line += "\n" + pad + d.OptionSource
+				line += "\n" + pad + palette.Render(style.Cyan, d.OptionSource)
 			}
 		}
 		b.WriteString(line)
@@ -116,7 +119,7 @@ func writeOptions(b *strings.Builder, hits []Hit, format OutputFormat) {
 	}
 }
 
-func writePackages(b *strings.Builder, hits []Hit, format OutputFormat) {
+func writePackages(b *strings.Builder, hits []Hit, format OutputFormat, palette style.Palette) {
 	nameW, versionW := 0, 0
 	for _, h := range hits {
 		nameW = max(nameW, utf8.RuneCountInString(h.Doc.PackageAttrName))
@@ -125,13 +128,14 @@ func writePackages(b *strings.Builder, hits []Hit, format OutputFormat) {
 
 	for _, h := range hits {
 		d := h.Doc
-		line := padRight(d.PackageAttrName, nameW) + "  " + padRight(d.PackagePversion, versionW)
+		line := palette.Render(style.Bold, padRight(d.PackageAttrName, nameW)) +
+			"  " + palette.Render(style.Yellow, padRight(d.PackagePversion, versionW))
 		if programs := formatPrograms(d); programs != "" {
-			line += "  " + programs
+			line += "  " + palette.Render(style.Green, programs)
 		}
 		if format == OutputLong {
 			if desc := strings.TrimSpace(strings.ReplaceAll(d.PackageDescription, "\n", " ")); desc != "" {
-				line += "\n" + strings.Repeat(" ", nameW+versionW+4) + desc
+				line += "\n" + strings.Repeat(" ", nameW+versionW+4) + palette.Render(style.Dim, desc)
 			}
 		}
 		b.WriteString(line)

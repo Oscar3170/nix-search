@@ -43,7 +43,7 @@ var globalFlagRows = []helpRow{
 	{"-s, --sort", "MODE", "sort results: relevance, alpha (default: relevance)"},
 	{"-n, --max-results", "N", "maximum number of results (default: 50)"},
 	{"-o, --output", "FORMAT", "output style: short, regular, long, json (default: regular)"},
-	{"    --color", "MODE", "colorize help: auto, always, never (default: auto)"},
+	{"    --color", "MODE", "colorize output: auto, always, never (default: auto)"},
 	{"-h, --help", "", "show this help"},
 	{"    --version", "", "show the version"},
 }

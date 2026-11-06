@@ -1,0 +1,9 @@
+[1mservices.nginx.enable      [0m  [35mboolean[0m  [33mfalse[0m
+                                      [2mWhether to enable Nginx Web Server.[0m
+                                      [36mnixos/modules/services/web-servers/nginx/default.nix[0m
+[1mservices.romm.nginx.enable [0m  [35mboolean[0m  [33mtrue[0m
+                                      [2mWhether to serve RomM through a local nginx virtual host, as upstream’s container image does. The backend only exposes the API; nginx serves the frontend, ROM downloads ( X-Accel-Redirect , mod_zip ) and the cross-origin isolation headers for the emulator. Point external reverse proxies at this virtual host.[0m
+                                      [36mnixos/modules/services/web-apps/romm.nix[0m
+[1mservices.lemmy.nginx.enable[0m  [35mboolean[0m  [33mfalse[0m
+                                      [2mWhether to enable exposing Lemmy with the nginx reverse proxy.[0m
+                                      [36mnixos/modules/services/web-apps/lemmy.nix[0m

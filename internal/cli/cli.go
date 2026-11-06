@@ -34,7 +34,7 @@ type Options struct {
 	Sort       search.Sort
 	Output     search.OutputFormat
 	MaxResults int
-	// Color decides whether the help text is colorized.
+	// Color decides whether output is colorized.
 	Color style.Mode
 	// Help reports that -h/--help was given.
 	Help bool
@@ -92,7 +92,7 @@ func MainContext(ctx context.Context, argv []string, stdout, stderr io.Writer, s
 		fmt.Fprintf(stderr, "error: %v\n", err)
 		return 1
 	}
-	if err := search.Write(stdout, resp, opts.Source, opts.Output); err != nil {
+	if err := search.Write(stdout, resp, opts.Source, opts.Output, paletteFor(stdout, opts.Color)); err != nil {
 		fmt.Fprintf(stderr, "error: %v\n", err)
 		return 1
 	}

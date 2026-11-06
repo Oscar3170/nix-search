@@ -26,6 +26,7 @@ $ nix-search nixos 'nginx enable' -o long
 $ nix-search home-manager programs.git
 $ nix-search -c 26.05 -s alpha -n 20 jq
 $ nix-search -o json ffmpeg | jq
+$ nix-search --color=always ripgrep   # keep colors when redirecting
 ```
 
 Global flags (`-c/--channel`, `-s/--sort`, `-n/--max-results`, `-o/--output`) may
@@ -39,12 +40,29 @@ plus the total match count).
 
 ## Colors
 
-The help text is colorized when stdout is a terminal and left plain when it is
-piped: bold section headers, bold cyan subcommands and flags, yellow metavars,
-dim example comments.
+Output is colorized when stdout is a terminal and left plain when it is piped,
+so `nix-search ... | grep` keeps working.
+
+| element                  | style     |
+| ------------------------ | --------- |
+| package and option names | bold      |
+| package versions         | yellow    |
+| provided programs        | green     |
+| option types             | magenta   |
+| option defaults          | yellow    |
+| descriptions             | dim       |
+| option source files      | cyan      |
+
+The help text uses the same palette: bold section headers, bold cyan
+subcommands and flags, yellow metavars, dim example comments. `-o json` is never
+colorized, and the styling is applied after padding so column alignment is
+identical with or without color.
 
 `--color auto|always|never` overrides the default (`auto`), which also honours
 `NO_COLOR`, `CLICOLOR_FORCE` and `TERM=dumb`.
+
+Previews are committed under `examples/`; `cat examples/pkgs.ansi` or check the
+[palette table](examples/README.md).
 
 ## Install
 
