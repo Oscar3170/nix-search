@@ -26,7 +26,6 @@ $ nix-search nixos 'nginx enable' -o long
 $ nix-search home-manager programs.git
 $ nix-search -c 26.05 -s alpha -n 20 jq
 $ nix-search -o json ffmpeg | jq
-$ nix-search --color=always ripgrep   # keep colors when redirecting
 ```
 
 Global flags (`-c/--channel`, `-s/--sort`, `-n/--max-results`, `-o/--output`) may
@@ -37,35 +36,6 @@ argument, and multiple trailing words are joined with spaces.
 Output styles are `regular` (default), `long` (adds descriptions and, for
 options, the defining file), `short` (names only) and `json` (the raw documents
 plus the total match count).
-
-## Colors
-
-Output is colorized when stdout is a terminal and left plain when it is piped,
-so `nix-search ... | grep` keeps working.
-
-| element                  | style     |
-| ------------------------ | --------- |
-| package and option names | bold      |
-| package versions         | yellow    |
-| provided programs        | green     |
-| option types             | magenta   |
-| option defaults          | yellow    |
-| descriptions             | dim       |
-| option source files      | cyan      |
-
-The help text uses the same palette: bold section headers, bold cyan
-subcommands and flags, yellow metavars, dim example comments. `-o json` is never
-colorized, and the styling is applied after padding so column alignment is
-identical with or without color.
-
-`--color auto|always|never` overrides the default (`auto`), which also honours
-`NO_COLOR`, `CLICOLOR_FORCE` and `TERM=dumb`.
-
-To preview the palette outside a terminal, force the colors through a pager:
-
-```console
-$ nix-search --color=always -n 5 ripgrep | less -R
-```
 
 ## Install
 
@@ -123,9 +93,6 @@ mapping changes. A request against a stale version gets a 404, in which case the
 client asks the backend which aliases exist and retries with the newest one for
 the requested channel. That also produces a useful error — with the list of
 available channels — when the channel itself no longer exists.
-
-Set `NIX_SEARCH_SCHEMA_VERSION` to skip straight to a specific mapping version
-(used by the integration tests to exercise the fallback path).
 
 ## Development
 
